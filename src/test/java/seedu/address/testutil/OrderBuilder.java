@@ -8,11 +8,12 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
 public class OrderBuilder {
-    public static final String DEFAULT_NAME = "Tom";
-    public static final String DEFAULT_PHONE = "11111111";
-    public static final String DEFAULT_ADDRESS = "Jerry’s House 111111";
-    public static final String DEFAULT_DETAILS = "1xchocholatecake";
-    public static final Boolean DEFAULT_COMPLETE = false;
+
+    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DETAILS = "1xchocolatemuffin";
+    public static final String DEFAULT_COMPLETE = "false";
 
     private Name name;
     private Phone phone;
