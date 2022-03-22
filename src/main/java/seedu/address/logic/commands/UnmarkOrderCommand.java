@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.List;
+import java.util.UUID;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -12,9 +13,6 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Complete;
 import seedu.address.model.order.Details;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 
 public class UnmarkOrderCommand extends Command {
 
@@ -59,13 +57,11 @@ public class UnmarkOrderCommand extends Command {
     private Order createUnmarkedOrder(Order orderToUnmark) {
         assert orderToUnmark != null;
 
-        Name updatedName = orderToUnmark.getName();
-        Phone updatedPhone = orderToUnmark.getPhone();
-        Address updatedAddress = orderToUnmark.getAddress();
         Details updatedDetails = orderToUnmark.getDetails();
         Complete updatedComplete = new Complete(false);
+        UUID uuid = orderToUnmark.getUuid();
 
-        return new Order(updatedName, updatedPhone, updatedAddress, updatedDetails, updatedComplete);
+        return new Order(updatedDetails, updatedComplete, uuid);
 
     }
 

@@ -24,7 +24,7 @@
 
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" style="-fx-text-fill-fx-te: 66462F;" text="File">
+          <Menu mnemonicParsing="false" style="-fx-text-fill-fx-te: #66462F;" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

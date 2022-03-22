@@ -15,14 +15,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ModelStub;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.order.Details;
 import seedu.address.model.order.Order;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.OrderBuilder;
 
 
 public class AddOrderCommandTest {
     @Test
     public void constructor_nullOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddOrderCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddOrderCommand(null, null));
     }
 
     @Test
@@ -31,7 +33,8 @@ public class AddOrderCommandTest {
                 .ModelStubAcceptingOrderAdded();
         Order validOrder = new OrderBuilder().build();
 
-        CommandResult commandResult = new AddOrderCommand(validOrder).execute(modelStub);
+        CommandResult commandResult = new AddOrderCommand(new Details(OrderBuilder.DEFAULT_DETAILS),
+                new Phone(OrderBuilder.DEFAULT_PHONE)).execute(modelStub);
 
         assertEquals(String.format(AddOrderCommand.MESSAGE_ORDER_SUCCESS, validOrder),
                 commandResult.getFeedbackToUser());
@@ -41,7 +44,9 @@ public class AddOrderCommandTest {
     @Test
     public void execute_duplicateOrder_throwsCommandException() {
         Order validOrder = new OrderBuilder().build();
-        AddOrderCommand addOrderCommand = new AddOrderCommand(validOrder);
+        AddOrderCommand addOrderCommand = new AddOrderCommand(new Details(OrderBuilder.DEFAULT_DETAILS),
+                new Phone(OrderBuilder.DEFAULT_PHONE));
+
         ModelStub modelStub = new AddOrderCommandTest.ModelStubWithOrder(validOrder);
 
         assertThrows(CommandException.class,
@@ -50,16 +55,17 @@ public class AddOrderCommandTest {
 
     @Test
     public void equals() {
-        Order alice = new OrderBuilder().withName("Alice").build();
-        Order bob = new OrderBuilder().withName("Bob").build();
-        AddOrderCommand addAliceOrderCommand = new AddOrderCommand(alice);
-        AddOrderCommand addBobOrderCommand = new AddOrderCommand(bob);
+        AddOrderCommand addAliceOrderCommand = new AddOrderCommand(new Details(OrderBuilder.DEFAULT_DETAILS),
+                new Phone("12345"));
+        AddOrderCommand addBobOrderCommand = new AddOrderCommand(new Details(OrderBuilder.DEFAULT_DETAILS),
+                new Phone("54321"));
 
         // same object -> returns true
         assertTrue(addAliceOrderCommand.equals(addAliceOrderCommand));
 
         // same values -> returns true
-        AddOrderCommand addAliceOrderCommandCopy = new AddOrderCommand(alice);
+        AddOrderCommand addAliceOrderCommandCopy = new AddOrderCommand(new Details(OrderBuilder.DEFAULT_DETAILS),
+                new Phone("12345"));
         assertTrue(addAliceOrderCommand.equals(addAliceOrderCommandCopy));
 
         // different types -> returns false

@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_ORDER;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB_ORDER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DETAILS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertOrderCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
@@ -35,7 +33,7 @@ public class EditOrderCommandTest {
     private Model model = new ModelManager(getTypicalAddressBookOrders(), new UserPrefs());
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Order editedOrder = new OrderBuilder().build(); // Creates the order in orderbuilder
+        Order editedOrder = new OrderBuilder().withDetails("1xChocCake").build(); // Creates the order in orderbuilder
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(editedOrder).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_ORDER, descriptor);
 
@@ -53,11 +51,11 @@ public class EditOrderCommandTest {
         Order lastOrder = model.getFilteredOrderList().get(indexLastOrder.getZeroBased());
 
         OrderBuilder orderInList = new OrderBuilder(lastOrder);
-        Order editedOrder = orderInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Order editedOrder = orderInList
                 .withDetails(VALID_DETAILS_BOB).build();
 
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withDetails(VALID_DETAILS_BOB).build();
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder()
+                .withDetails(VALID_DETAILS_BOB).build();
 
         EditOrderCommand editOrderCommand = new EditOrderCommand(indexLastOrder, descriptor);
 
@@ -86,9 +84,9 @@ public class EditOrderCommandTest {
         showOrderAtIndex(model, INDEX_FIRST_ORDER);
 
         Order orderInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
-        Order editedOrder = new OrderBuilder(orderInFilteredList).withName(VALID_NAME_BOB).build();
+        Order editedOrder = new OrderBuilder(orderInFilteredList).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_ORDER,
-                new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditOrderDescriptorBuilder().build());
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
@@ -101,7 +99,7 @@ public class EditOrderCommandTest {
     @Test
     public void execute_invalidOrderIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
@@ -119,7 +117,7 @@ public class EditOrderCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getOrderList().size());
 
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex,
-                new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditOrderDescriptorBuilder().build());
 
         assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }

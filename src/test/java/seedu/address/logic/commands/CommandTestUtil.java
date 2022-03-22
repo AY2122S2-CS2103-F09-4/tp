@@ -18,7 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
-import seedu.address.model.order.OrderContainsKeywordsPredicate;
+import seedu.address.model.order.OrderUuidContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
@@ -39,6 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_DETAILS_AMY = "1xchocolatemuffin";
     public static final String VALID_DETAILS_BOB = "1xraspberrycake";
+    public static final String VALID_UUID_AMY = "c03d9523-9748-4fdd-938e-5666b9564af6";
+    public static final String VALID_UUID_BOB = "2609b29d-9532-4efb-8d9a-f7ab63d6d612";
     public static final String VALID_COMPLETE_AMY = "false";
     public static final String VALID_COMPLETE_BOB = "true";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -77,11 +79,9 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        DESC_AMY_ORDER = new EditOrderDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_AMY_ORDER = new EditOrderDescriptorBuilder()
                 .withDetails(VALID_DETAILS_AMY).build();
-        DESC_BOB_ORDER = new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
+        DESC_BOB_ORDER = new EditOrderDescriptorBuilder()
                 .withDetails(VALID_DETAILS_BOB).build();
     }
 
@@ -160,8 +160,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
 
         Order order = model.getFilteredOrderList().get(targetIndex.getZeroBased());
-        final String[] splitName = order.getName().fullName.split("\\s+");
-        model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitName = order.getUuid().toString().split("\\s+");
+        model.updateFilteredOrderList(new OrderUuidContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredOrderList().size());
     }

@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_ORDER;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB_ORDER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DETAILS_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,16 +31,10 @@ public class EditOrderDescriptorTest {
         // different values -> returns false
         assertFalse(DESC_AMY_ORDER.equals(DESC_BOB_ORDER));
 
-        // different name -> returns false
-        EditOrderDescriptor editedAmy = new EditOrderDescriptorBuilder(DESC_AMY_ORDER).withName(VALID_NAME_BOB).build();
+        // different details -> returns false
+        EditOrderDescriptor editedAmy = new EditOrderDescriptorBuilder(DESC_AMY_ORDER).withDetails(VALID_DETAILS_BOB)
+                .build();
         assertFalse(DESC_AMY_ORDER.equals(editedAmy));
 
-        // different phone -> returns false
-        editedAmy = new EditOrderDescriptorBuilder(DESC_AMY_ORDER).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DESC_AMY_ORDER.equals(editedAmy));
-
-        // different address -> returns false
-        editedAmy = new EditOrderDescriptorBuilder(DESC_AMY_ORDER).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY_ORDER.equals(editedAmy));
     }
 }

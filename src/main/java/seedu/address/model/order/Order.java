@@ -3,10 +3,7 @@ package seedu.address.model.order;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import java.util.UUID;
 
 /**
  * Represents an Order in the ReadyBakey.
@@ -15,57 +12,44 @@ import seedu.address.model.person.Phone;
 public class Order {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
+    private final UUID uuid;
 
     // Data fields
-    private final Address address;
     private final Details details;
     private final Complete complete;
 
     /**
      * Every field must be present and not null.
      */
-    public Order(Name name, Phone phone, Address address, Details details) {
-        requireAllNonNull(name, phone, address, details);
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
+    public Order(Details details, UUID uuid) {
+        requireAllNonNull(uuid, details);
         this.details = details;
         this.complete = new Complete(false);
+        this.uuid = uuid;
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Order(Name name, Phone phone, Address address, Details details, Complete complete) {
-        requireAllNonNull(name, phone, address, details, complete);
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
+    public Order(Details details, Complete complete, UUID uuid) {
+        requireAllNonNull(uuid, details, complete);
         this.details = details;
         this.complete = complete;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public Phone getPhone() {
-        return phone;
+        this.uuid = uuid;
     }
 
     public Details getDetails() {
         return details;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
     public Complete getComplete() {
         return complete;
     }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
 
     /**
      * Returns true if both orders have the same identity and data fields.
@@ -82,27 +66,20 @@ public class Order {
         }
 
         Order otherOrder = (Order) other;
-        return otherOrder.getName().equals(getName())
-                && otherOrder.getPhone().equals(getPhone())
-                && otherOrder.getAddress().equals(getAddress())
+        return otherOrder.getUuid().equals(getUuid())
                 && otherOrder.getDetails().equals(getDetails());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, details);
+        return Objects.hash(uuid, details, complete);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Address: ")
-                .append(getAddress())
-                .append("; Details: ")
+        builder.append("; Details: ")
                 .append(getDetails())
                 .append("; Complete: ")
                 .append(getComplete());

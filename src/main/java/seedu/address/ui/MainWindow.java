@@ -153,7 +153,7 @@ public class MainWindow extends UiPart<Stage> {
      * Handles the displayed list of results in MainWindow when the command refers to orders
      */
     public void handleOrderCommand() {
-        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getFilteredPersonList());
         resultList.getChildren().setAll(orderListPanel.getRoot());
     }
 

@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.order.Order;
+import seedu.address.model.person.Person;
 
 /**
  * An UI component that displays information of a {@code Order}.
@@ -39,18 +40,33 @@ public class OrderCard extends UiPart<Region> {
     private Label complete;
 
     /**
+     * Creates a {@code OrderCard} with the given {@code Order}, {@code Person} and index to display.
+     */
+    public OrderCard(Order order, int displayedIndex, Person person) {
+        super(FXML);
+        this.order = order;
+        id.setText(displayedIndex + ". ");
+        name.setText(person.getName().fullName);
+        phone.setText(person.getPhone().value);
+        address.setText(person.getAddress().value);
+        details.setText(order.getDetails().value);
+        complete.setText(order.getComplete().toString());
+    }
+
+    /**
      * Creates a {@code OrderCard} with the given {@code Order} and index to display.
      */
     public OrderCard(Order order, int displayedIndex) {
         super(FXML);
         this.order = order;
         id.setText(displayedIndex + ". ");
-        name.setText(order.getName().fullName);
-        phone.setText(order.getPhone().value);
-        address.setText(order.getAddress().value);
+        name.setText("Null");
+        phone.setText("Null");
+        address.setText("Null");
         details.setText(order.getDetails().value);
         complete.setText(order.getComplete().toString());
     }
+
 
     @Override
     public boolean equals(Object other) {
