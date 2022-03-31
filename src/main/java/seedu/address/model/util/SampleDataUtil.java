@@ -6,8 +6,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.order.CollectionType;
 import seedu.address.model.order.DeliveryDateTime;
 import seedu.address.model.order.Details;
@@ -21,7 +19,7 @@ import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ReadyBakey} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -61,8 +59,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static seedu.address.model.ReadOnlyReadyBakey getSampleAddressBook() {
+        seedu.address.model.ReadyBakey sampleAb = new seedu.address.model.ReadyBakey();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

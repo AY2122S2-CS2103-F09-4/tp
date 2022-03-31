@@ -13,16 +13,16 @@ import static seedu.address.logic.commands.CommandTestUtil.assertOrderCommandSuc
 import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
-import static seedu.address.testutil.TypicalOrders.getTypicalAddressBookOrders;
+import static seedu.address.testutil.TypicalOrders.getTypicalReadyBakeyOrders;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditOrderCommand.EditOrderDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadyBakey;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.Order;
 import seedu.address.testutil.EditOrderDescriptorBuilder;
@@ -33,7 +33,7 @@ import seedu.address.testutil.OrderBuilder;
  */
 public class EditOrderCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookOrders(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalReadyBakeyOrders(), new UserPrefs());
     @Test
     public void execute_detailsFieldSpecifiedUnfilteredList_success() {
         Order editedOrder = new OrderBuilder(model.getFilteredOrderList().get(0))
@@ -43,7 +43,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ReadyBakey(model.getReadyBakey()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
 
         assertOrderCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
@@ -71,7 +71,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ReadyBakey(model.getReadyBakey()), new UserPrefs());
         expectedModel.setOrder(lastOrder, editedOrder);
 
         assertOrderCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
@@ -100,7 +100,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ReadyBakey(model.getReadyBakey()), new UserPrefs());
         expectedModel.setOrder(lastOrder, editedOrder);
 
         assertOrderCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
@@ -113,7 +113,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ReadyBakey(model.getReadyBakey()), new UserPrefs());
 
         assertOrderCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
@@ -129,7 +129,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ReadyBakey(model.getReadyBakey()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
 
         assertOrderCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
@@ -146,14 +146,14 @@ public class EditOrderCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of ReadyBakey
      */
     @Test
     public void execute_invalidOrderIndexFilteredList_failure() {
         showOrderAtIndex(model, INDEX_FIRST_ORDER);
         Index outOfBoundIndex = INDEX_SECOND_ORDER;
         // ensures that outOfBoundIndex is still in bounds of ReadyBakey Order list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getOrderList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getReadyBakey().getOrderList().size());
 
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex,
                 new EditOrderDescriptorBuilder().build());

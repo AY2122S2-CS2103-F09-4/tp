@@ -16,9 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.ModelStub;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.order.CollectionType;
 import seedu.address.model.order.DeliveryDateTime;
 import seedu.address.model.order.Order;
@@ -137,8 +135,8 @@ public class AddOrderCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public seedu.address.model.ReadOnlyReadyBakey getReadyBakey() {
+            return new seedu.address.model.ReadyBakey();
         }
 
         @Override

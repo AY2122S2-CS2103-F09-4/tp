@@ -7,13 +7,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandSu
 import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
-import static seedu.address.testutil.TypicalOrders.getTypicalAddressBookOrders;
+import static seedu.address.testutil.TypicalOrders.getTypicalReadyBakeyOrders;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,7 +27,7 @@ import seedu.address.testutil.OrderBuilder;
  */
 public class UnmarkOrderCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookOrders(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalReadyBakeyOrders(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -48,7 +47,8 @@ public class UnmarkOrderCommandTest {
 
         String expectedMessage = String.format(UnmarkOrderCommand.MESSAGE_UNMARK_ORDER_SUCCESS, unmarkedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new seedu.address.model.ReadyBakey(model.getReadyBakey()),
+                new UserPrefs());
 
         assertPersonCommandSuccess(unmarkOrderCommand, model, expectedMessage, expectedModel);
     }
@@ -80,7 +80,8 @@ public class UnmarkOrderCommandTest {
         String expectedMessage = String.format(UnmarkOrderCommand.MESSAGE_UNMARK_ORDER_SUCCESS,
                 unmarkedOrderInFilteredList);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new seedu.address.model.ReadyBakey(model.getReadyBakey()),
+                new UserPrefs());
 
         assertPersonCommandSuccess(unmarkOrderCommand, model, expectedMessage, expectedModel);
     }
@@ -91,7 +92,7 @@ public class UnmarkOrderCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_ORDER;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getOrderList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getReadyBakey().getOrderList().size());
 
         UnmarkOrderCommand unmarkOrderCommand = new UnmarkOrderCommand(outOfBoundIndex);
 

@@ -14,7 +14,7 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ReadyBakey implements ReadOnlyReadyBakey {
 
     private final UniquePersonList persons;
     private final UniqueOrderList orders;
@@ -31,12 +31,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         orders = new UniqueOrderList();
     }
 
-    public AddressBook() {}
+    public ReadyBakey() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an ReadyBakey using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ReadyBakey(ReadOnlyReadyBakey toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -60,9 +60,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ReadyBakey} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyReadyBakey newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -100,7 +100,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ReadyBakey}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
@@ -116,7 +116,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ReadyBakey}.
      * {@code key} must exist in the address book.
      */
     public void removeOrder(Order key) {
@@ -165,8 +165,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof ReadyBakey // instanceof handles nulls
+                && persons.equals(((ReadyBakey) other).persons));
     }
 
     @Override

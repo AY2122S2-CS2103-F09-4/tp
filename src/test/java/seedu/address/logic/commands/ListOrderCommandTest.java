@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertPersonCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
-import static seedu.address.testutil.TypicalOrders.getTypicalAddressBookOrders;
+import static seedu.address.testutil.TypicalOrders.getTypicalReadyBakeyOrders;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListOrderCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBookOrders(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalReadyBakeyOrders(), new UserPrefs());
+        expectedModel = new ModelManager(model.getReadyBakey(), new UserPrefs());
     }
 
     @Test

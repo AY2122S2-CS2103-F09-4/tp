@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.order.CollectionType;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
@@ -67,10 +66,10 @@ public class TypicalOrders {
     private TypicalOrders() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical orders.
+     * Returns an {@code ReadyBakey} with all the typical orders.
      */
-    public static AddressBook getTypicalAddressBookOrders() {
-        AddressBook ab = new AddressBook();
+    public static seedu.address.model.ReadyBakey getTypicalReadyBakeyOrders() {
+        seedu.address.model.ReadyBakey ab = new seedu.address.model.ReadyBakey();
         for (Order order : getTypicalOrders()) {
             ab.addOrder(order);
         }

@@ -118,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
         responseDisplay = new ResponseDisplay();
         responseDisplayPlaceholder.getChildren().add(responseDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getReadyBakeyFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -153,7 +153,7 @@ public class MainWindow extends UiPart<Stage> {
      * Handles the displayed list of results in MainWindow when the command refers to orders
      */
     public void handleOrderCommand() {
-        orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getAddressBook().getPersonList());
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getReadyBakey().getPersonList());
         resultList.getChildren().setAll(orderListPanel.getRoot());
     }
 

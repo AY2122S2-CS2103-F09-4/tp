@@ -19,8 +19,8 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ReadyBakey;
 import seedu.address.model.order.CollectionType;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderUuidContainsKeywordsPredicate;
@@ -121,7 +121,6 @@ public class CommandTestUtil {
         DESC_BOB_ORDER = new EditOrderDescriptorBuilder()
                 .withDetails(VALID_DETAILS_BOB).withDeliveryDateTime(VALID_DELIVERYDATETIME_BOB)
                 .withCollectionType(VALID_COLLECTIONTYPE_BOB_TYPE).build();
-
     }
 
     /**
@@ -169,11 +168,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        ReadyBakey expectedReadyBakey = new ReadyBakey(actualModel.getReadyBakey());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedReadyBakey, actualModel.getReadyBakey());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
 

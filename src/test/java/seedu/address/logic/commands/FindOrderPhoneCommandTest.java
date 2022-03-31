@@ -7,7 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW
 import static seedu.address.logic.commands.CommandTestUtil.assertOrderCommandSuccess;
 import static seedu.address.testutil.TypicalOrders.EMILY;
 import static seedu.address.testutil.TypicalOrders.SIMON;
-import static seedu.address.testutil.TypicalOrders.getTypicalAddressBookOrders;
+import static seedu.address.testutil.TypicalOrders.getTypicalReadyBakeyOrders;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,8 +26,8 @@ import seedu.address.model.person.PhoneContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindOrderPhoneCommand}.
  */
 public class FindOrderPhoneCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBookOrders(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBookOrders(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalReadyBakeyOrders(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalReadyBakeyOrders(), new UserPrefs());
 
     @Test
     public void equals() {

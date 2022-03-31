@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertOrderCommandSuccess;
-import static seedu.address.testutil.TypicalOrders.getTypicalAddressBookOrders;
+import static seedu.address.testutil.TypicalOrders.getTypicalReadyBakeyOrders;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class FindIncompleteOrdersCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBookOrders(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalReadyBakeyOrders(), new UserPrefs());
+        expectedModel = new ModelManager(model.getReadyBakey(), new UserPrefs());
     }
 
     @Test

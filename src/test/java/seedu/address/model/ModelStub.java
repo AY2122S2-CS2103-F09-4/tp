@@ -30,12 +30,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getReadyBakeyFilePath() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setReadyBakeyFilePath(Path readyBakeyFilePath) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -45,12 +45,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook newData) {
+    public void setReadyBakey(ReadOnlyReadyBakey newData) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyReadyBakey getReadyBakey() {
         throw new AssertionError("This method should not be called.");
     }
 

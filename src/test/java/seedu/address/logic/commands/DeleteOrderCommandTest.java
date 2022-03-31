@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertOrderCommandSuc
 import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
-import static seedu.address.testutil.TypicalOrders.getTypicalAddressBookOrders;
+import static seedu.address.testutil.TypicalOrders.getTypicalReadyBakeyOrders;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.address.model.order.Order;
  */
 public class DeleteOrderCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookOrders(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalReadyBakeyOrders(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class DeleteOrderCommandTest {
 
         String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReadyBakey(), new UserPrefs());
         expectedModel.deleteOrder(orderToDelete);
 
         assertOrderCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeleteOrderCommandTest {
 
         String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getReadyBakey(), new UserPrefs());
         expectedModel.deleteOrder(orderToDelete);
         showNoOrder(expectedModel);
 
@@ -69,7 +69,7 @@ public class DeleteOrderCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_ORDER;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getOrderList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getReadyBakey().getOrderList().size());
 
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
 

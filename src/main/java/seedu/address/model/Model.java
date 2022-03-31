@@ -41,20 +41,20 @@ public interface Model {
     /**
      * Returns the user prefs' ReadyBakey file path.
      */
-    Path getAddressBookFilePath();
+    Path getReadyBakeyFilePath();
 
     /**
      * Sets the user prefs' ReadyBakey file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setReadyBakeyFilePath(Path readyBakeyFilePath);
 
     /**
      * Replaces ReadyBakey data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setReadyBakey(ReadOnlyReadyBakey readyBakey);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ReadyBakey */
+    ReadOnlyReadyBakey getReadyBakey();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the ReadyBakey.
